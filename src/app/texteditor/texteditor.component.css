@@ -1,0 +1,98 @@
+.Compilebtn{ 
+    margin-left: 40px;
+    background: blueviolet;
+    zoom: 0.8;
+    color: white;
+    margin-top: 10px;
+    margin-left: 50px;      
+}
+
+.output{
+    height: 110px;
+    border: 2px solid rgb(39 40 34);
+    background-color: #2f3129;
+    width: 550px;
+    margin-left: 40px;
+    padding: 12px;
+    color: white;
+    font-size: medium;
+    font-family: math;
+}
+
+.textbox{
+    height: 140px;
+    border: 2px solid rgb(39 40 34);
+    background-color:#2f3129;
+    width: 696px;
+    margin-left: 40px;
+    padding: 12px;
+    color: white;
+    font-size: medium;
+    font-family: math;
+}
+
+pre{
+        height: 140px;
+        border: 2px solid rgb(39 40 34);
+        background-color: #2f3129;
+        width: 686px;
+        margin-left: 40px;
+        padding: 12px;
+        color: white;
+        font-size: medium;
+        font-family: math;
+}
+.heading{
+    padding-bottom: 10px;
+    border: 20px;
+    margin-left:40px;
+}
+.ace{
+    height: 380px;
+    width: 90%;
+    margin-top: 10px;
+    margin-left: 38px;
+    margin-right: 40px;
+    zoom: 1;
+    max-width: 695px;
+    max-height: 300px;
+        
+}
+
+
+.suggestions{
+         margin-left: auto;
+         background-color: green;
+         zoom: 0.8;
+         color: white;
+         margin-top: 10px;
+         margin-right: 44px;
+}
+.space1{
+    display: flex;
+    padding-top: 2%;
+    justify-content: flex-start;
+}
+
+.spinner-container {
+    position: relative;
+}
+
+.spinner-container mat-progress-spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        zoom: 1.5;
+}
+
+.spinner-container .content {
+    position: relative;
+    z-index: 1;
+}
+
+.spinner-container.is-loading .content {
+    filter: blur(1px);
+}
+

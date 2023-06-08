@@ -1,0 +1,32 @@
+<mat-sidenav-container>
+  <mat-nav-list>
+    <div class="logo py-4">
+      <img src="./assets/iamneo-logo.png" alt="Company Logo" />
+    </div>
+    <div *ngFor="let us of readData">
+
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/home"
+        *ngIf="us.topics == 'Introduction of Java'" (click)="handleClick()">
+        {{us.topics}}
+      </a>
+    </div>
+
+    <!-- <h2 matSubheader class="c1"> CONTENTS</h2> -->
+
+    <div *ngFor="let us of readData">
+      <a mat-list-item *ngIf="us.topics != 'Introduction of Java'"> {{us.topics}} </a>
+    </div>
+    <!-- <div>
+        <a mat-list-item routerLink="/c2" routerLinkActive="list-item-active"> Keywords And Variables </a>
+        <a mat-list-item> Operators And Expressions </a>
+        <a mat-list-item> Conditional Statements </a>
+        <a mat-list-item> Looping Statements </a>
+        <a mat-list-item> Arrays - 1D </a>
+        <a mat-list-item> Arrays - 2D </a>
+        <a mat-list-item> Strings </a>
+        <a mat-list-item> Functions </a>
+
+        <a mat-list-item>Recursions </a>
+      </div> -->
+  </mat-nav-list>
+</mat-sidenav-container>

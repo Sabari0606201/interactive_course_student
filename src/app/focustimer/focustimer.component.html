@@ -1,0 +1,15 @@
+<div class="timer">
+    <h2>{{ minutes }}:{{ seconds < 10 ? '0' + seconds : seconds }}</h2>
+            <div>
+                <label>Minutes:</label>
+                <input type="number" [(ngModel)]="minutes">
+            </div>
+            <div>
+                <label>Seconds:</label>
+                <input type="number" [(ngModel)]="seconds">
+            </div>
+            <button (click)="isPaused ? startTimer() : pauseTimer()">
+                {{ isPaused ? 'Start' : 'Pause' }}
+            </button>
+            <button (click)="resetTimer()">Reset</button>
+</div>

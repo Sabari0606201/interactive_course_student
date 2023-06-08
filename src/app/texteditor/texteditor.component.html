@@ -1,0 +1,28 @@
+<div class="spinner-container" [ngClass]="{ 'is-loading': isLoading }">
+    <mat-progress-spinner *ngIf="isLoading" color="accent" mode="indeterminate" diameter="40"></mat-progress-spinner>
+    <div class="content">
+        <!-- your content here -->
+        <ace #editor class="ace" [disabled]="false" [mode]="'java'" [theme]="'monokai'" [config]="{}"
+            [(value)]="content">
+        </ace>
+    </div>
+</div>
+
+<div class="space1">
+    <button mat-button class="Compilebtn" (click)="compile()">Run</button>
+    <button mat-icon-button (click)="deletecode()"><mat-icon>delete</mat-icon></button>
+    <button mat-button (click)="sugg()" class="suggestions" [@shake]="buttonState" *ngIf="suggestionshow">Unable to
+        solve
+        errors !</button>
+</div>
+
+<div>
+    <h5 class="heading"><b>Output</b></h5>
+    <pre class="output" class="textbox">
+{{result.stdout}}{{result.stderr}}</pre>
+</div>
+
+<div>
+    <h5 class="heading"><b> Input </b></h5>
+    <textarea type="" [(ngModel)]="value" class="textbox"></textarea>
+</div>

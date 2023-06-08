@@ -1,0 +1,44 @@
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: var(--mdc-dialog-container-shape, var(--mdc-shape-medium, 20px));
+}
+
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    background-color: var(--mdc-dialog-container-color, black);
+}
+
+.heading{
+    font-weight: 600;
+        padding: 10px;
+        margin-left: 10px;
+        font-size: x-large;
+        font-family: math;
+        color: gold;
+        background: darkslategrey;
+}
+
+.container{
+    backdrop-filter: blur(10px);
+        transition: backdrop-filter 0.3s ease;
+    max-width: 800px;
+    max-height: 450px;
+    background-color: #2f3129;
+}
+
+.sugg{
+    color: rgb(38 173 195);
+        zoom: 1;
+        font-weight: 600;
+        padding: 10px;
+        font-size: large;
+        font-family: math;
+}
+
+.closebtn{
+    margin-left: 85%;
+        background-color: goldenrod;
+        margin-bottom: 30px;
+        zoom: 0.8;
+        color: white;
+}
+

@@ -1,0 +1,59 @@
+
+  .mat-icon {
+    vertical-align: middle;
+    margin-right: 1rem;
+    color: rgb(0, 0, 2);
+    
+
+  }
+
+
+  .mat-sidenav-container{
+    color: aqua;
+    background-color: rgb(7, 166, 166);
+    height: 100%;
+    
+  }
+  .mat-list-item{
+    color: aliceblue;
+  }
+
+ 
+
+
+.logo {
+  text-align: center;
+  padding: 2.6rem 1rem;
+  zoom: 12%;
+  width: 70%;
+  border-radius:1% ;
+  margin-left: 15%;
+ padding-bottom: 20%;
+
+}
+.mat-list{
+  color: blue;
+  background-color: white;
+}
+
+
+
+
+  
+.list-item-active {
+   background: rgb(239, 239, 244);
+   border-radius: 0 2rem 2rem 0;
+}
+
+.c1 {
+  color:rgb(255, 255, 255);
+  font-size: 2.5rem;
+  
+  letter-spacing: 2px;
+  margin-left: 40px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+
+}
+
+

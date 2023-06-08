@@ -1,0 +1,8 @@
+<div>
+    <td-ngx-text-diff [left]="left" [right]="right" (compareResults)="onCompareResults($event)">
+    </td-ngx-text-diff>
+    <mat-dialog-actions align="end">
+        <!-- <button mat-button mat-dialog-close>Cancel</button> -->
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial>close</button>
+    </mat-dialog-actions>
+</div>

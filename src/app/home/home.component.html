@@ -1,0 +1,284 @@
+<app-tip></app-tip>
+
+
+
+
+<article class="sample-wrapper">
+   <igx-accordion #accordion [singleBranchExpand]="singleBranchExpand" class="accordion">
+      <igx-expansion-panel>
+         <igx-expansion-panel-header>
+            <igx-expansion-panel-title class="stagepanel">
+               <div>Stages</div>
+            </igx-expansion-panel-title>
+         </igx-expansion-panel-header>
+         <igx-expansion-panel-body class="stagebtn">
+            <button mat-button (click)="stage(1)" [ngClass]="{'highlight': currentStage === 1}">stage1</button>
+            <button mat-button (click)="stage(2)" [ngClass]="{'highlight': currentStage === 2}" id="button1"
+               [disabled]="isButton1Disabled">stage2</button>
+            <button mat-button (click)="stage(3)" [ngClass]="{'highlight': currentStage === 3}" id="button2"
+               [disabled]="isButton2Disabled">stage3</button>
+            <button mat-button (click)="stage(4)" [ngClass]="{'highlight': currentStage === 4}" id="button3"
+               [disabled]="isButton3Disabled">stage4</button>
+         </igx-expansion-panel-body>
+      </igx-expansion-panel>
+   </igx-accordion>
+</article>
+
+<div class="space">
+   <div class="container2">
+      <div class="container" id="scrollableElement1">
+         <div *ngIf="currentStage === 1">
+            <div *ngIf="homeshow">
+               <mat-card class="tp-card" *ngFor="let topic of readData | unique: 'subtopicname'">
+                  <mat-card-header>
+                     <mat-card-title>{{ topic.subtopicname }}</mat-card-title>
+                  </mat-card-header><br>
+                  <mat-card-content
+                     *ngFor="let content of readData | filter: { key: 'subtopicname', value: topic.subtopicname }">
+                     <div class="print-font">
+                        <li [@fadeInOut]>{{ content.contents }}</li><br>
+                     </div>
+                  </mat-card-content>
+               </mat-card>
+
+
+               <div>
+                  <mat-card class="tp-card" *ngFor="let topic of readcodecontents | unique: 'program'">
+                     <mat-card-header>
+                        <mat-card-subtitle></mat-card-subtitle>
+                     </mat-card-header>
+                     <pre id=1 class="code">{{ topic.program }}</pre>
+                     <mat-card-content
+                        *ngFor="let content of readcodecontents | filter: { key: 'program', value: topic.program }">
+                        <h1></h1>
+                        <li>{{ content.contents }} </li>
+                     </mat-card-content>
+                  </mat-card>
+               </div>
+            </div>
+
+
+            <div>
+               <mat-card class="tp-card">
+                  <mat-card-header>
+                     <mat-card-title></mat-card-title>
+                  </mat-card-header><br>
+                  <mat-card-content>
+                     <div class="yt-video-player">
+                        <youtube-player [videoId]="videoId" [height]="250" #player [width]="500"> </youtube-player>
+                     </div>
+                     <div class="formnote">
+                        <form [formGroup]="userForm" (ngSubmit)="userSubmit()" class="form">
+                           <mat-form-field>
+                              <input matInput type="text" formControlName="notes" placeholder="Type notes"
+                                 id="first_name" name="first_name" #first_name style=" border-radius: 5px;zoom: 1.3;"
+                                 (click)="pauseVideo()">
+                           </mat-form-field>
+                           <button mat-button class="notebtn" (click)="playVideo()" (click)="getCurrentTime()">Add
+                              notes</button>
+                        </form>
+                        <div class="notes">
+                           <div *ngFor="let us of readnotes">
+                              <div class="disp">
+                                 <div class="time">
+                                    <button class="timebtn" (click)="onClickButton($event)"
+                                       [value]="us.timer">{{us.timer}}</button>
+                                 </div>
+                                 <div class="note">{{us.notes}}</div>
+                                 <button mat-icon-button
+                                    (click)="deleteID(us.noteid)"><mat-icon>delete</mat-icon></button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <br>
+                  </mat-card-content>
+               </mat-card>
+            </div>
+
+            <div class="instructions">
+               Instructions
+            </div>
+            <mat-card class="tp-card">
+               <mat-card-header>
+               </mat-card-header><br>
+
+               <mat-card-content *ngFor="let topic of practice | unique: 'question'">
+                  <mat-card-subtitle>{{ topic.question }}</mat-card-subtitle><br>
+               </mat-card-content>
+
+               <div style="display: flex;justify-content: space-evenly;max-width: 750px;">
+                  <button (click)="isshow = !isshow" cdkOverlayOrigin #trigger="cdkOverlayOrigin" mat-button
+                     class="showans" (click)="getProgram()">Show
+                     Answer</button>
+                  <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
+                     [cdkConnectedOverlayOpen]="isshow">
+
+
+                  </ng-template>
+                  <mat-accordion>
+                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                        class="exp_panel">
+                        <mat-expansion-panel-header class="expansion">
+                           <mat-panel-title>
+                              Get a Hint
+                           </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-card-content>You don’t have to change anything in the code editor.Click Run button to
+                           displays the output
+                        </mat-card-content>
+                     </mat-expansion-panel>
+                  </mat-accordion>
+               </div><br>
+            </mat-card>
+         </div>
+
+
+
+         <div *ngIf="currentStage === 2">
+            <mat-card class="tp-card">
+               <div class="quiz-container" *ngIf="fillupshow">
+                  <div *ngIf="crt_wrng_disp">
+                     <div class="quiz-question">
+                        <p>{{javaQuestions[code_ques].ques}}</p>
+                        <pre>{{javaQuestions[code_ques].code_ques}}</pre>
+                     </div>
+                     <form class="quiz-answer" #quizForm="ngForm">
+                        <label for="answer">Answer:</label>
+                        <input type="text" [(ngModel)]="fillup_answer" name="fillup_answer" required>
+                     </form>
+                  </div>
+                  <div class="quiz-feedback-wrong" *ngIf="iswrong">
+                     <p>☹️Wrong answer☹️</p>
+                     <button (click)="tryagain()">Try Again</button>
+                  </div>
+                  <div class="quiz-feedback-correct" *ngIf="isCorrect">
+                     <p>🤩Congratulations, you got it right!🤩</p>
+                     <div class="quiz-next">
+                        <button type="submit" (click)="nextques()">Next</button>
+                     </div>
+                  </div>
+                  <div class="quiz-submit" *ngIf="crt_wrng_disp">
+                     <button type="submit" (click)="showfillupans()">{{button_name}}</button>
+                     <button type="submit" (click)="checkAnswer()" *ngIf="submit_btn">Submit</button>
+                  </div>
+               </div>
+               <div class="fillupend" *ngIf="fillupend">
+                  <p>Well done!💐 You have successfully completed the task</p>
+                  <button mat-button (click)="advanceToNextStage(2)">Next</button>
+               </div>
+
+            </mat-card>
+         </div>
+
+
+         <div *ngIf="currentStage === 3">
+            <div>
+               <mat-card [@fadeInOut] class="tp-card" *ngIf="quizshow">
+                  <div>
+                     <mat-card-header>
+                        <mat-card-title>
+                           Quiz
+                        </mat-card-title>
+                        <h4 class="quiz_ques">{{current+1}}.{{demo[current].question}}</h4>
+                     </mat-card-header>
+                     <mat-card-content class="btns">
+                        <div class="options">
+                           <ol>
+                              <li class="quiz">
+                                 <div class="card1" (click)="answer(demo[current].optiona)">
+                                    {{demo[current].optiona}}</div>
+                              </li>
+                              <li class="quiz">
+                                 <div class="card1" (click)="answer(demo[current].optionb)">
+                                    {{demo[current].optionb}}</div>
+                              </li>
+                              <li class="quiz">
+                                 <div class="card1" (click)="answer(demo[current].optionc)">
+                                    {{demo[current].optionc}}</div>
+                              </li>
+                              <li class="quiz">
+                                 <div class="card1" (click)="answer(demo[current].optiond)">
+                                    {{demo[current].optiond}}</div>
+                              </li>
+                           </ol>
+                        </div>
+                        <br>
+                     </mat-card-content>
+                  </div>
+               </mat-card>
+            </div>
+
+
+
+            <div *ngIf="answershow">
+               <mat-card class="tp-card" [@fadeInOut]>
+                  <div>
+                     <div>
+                        <mat-card-content>
+                           <h5>No of Questions : {{current}}</h5>
+                           <h5>Correct Answers : <b style="color:green">{{correct_ans}}</b></h5>
+                           <h5>Wrong Answers : <b style="color: red;">{{wrong_ans}}</b></h5>
+                           <div *ngFor="let us of demo; let i=index ">
+                              <mat-card-title class="quiz_result_ques">{{i+1}}.{{us.question}}</mat-card-title><br>
+                              <div class="card2">you selected:<b>{{ans[i]}}</b></div> <br>
+                              <div class="card2">Correct answer:<b style="color: green;">{{us.answer}}</b></div>
+                           </div>
+                        </mat-card-content>
+                     </div>
+                  </div>
+               </mat-card>
+               <button mat-button class="next" (click)="advanceToNextStage(3)">Next</button>
+            </div>
+         </div>
+
+
+
+
+         <div *ngIf="currentStage === 4">
+            <mat-card class="tp-card" *ngFor="let us of readtask">
+               <mat-card-content>
+                  <div>
+                     <div class="question">
+                        <!-- <button mat-button (click)="nexttopic()">Next Topic</button> -->
+                        <p class="question-header"><strong>Problem:</strong></p>
+                        <p class="taskquestion">
+                           {{us.Problem}}
+                        </p>
+                        <p class="question-header"><strong>Input:</strong></p>
+                        <p class="taskquestion">{{us.Input}}</p>
+                        <p class="question-header"><strong>Constraints:</strong></p>
+                        <ul>
+                           <li class="taskquestion">{{us.Constraints}}</li>
+                        </ul>
+                        <p class="question-header"><strong>Expected Output :</strong></p>
+                        <div class="checkans">
+                           <pre>{{us.expected_output}}</pre>
+                           <p class="testcase_pass" *ngIf="correct1">Passed</p>
+                           <p class="testcase_fail" *ngIf="wrong">Failed</p>
+                        </div>
+                        <p class="question-header"><strong>Acutal Output :</strong></p>
+                        <pre>{{value}}</pre>
+                        <button mat-button class="checkbutton" (click)="checkans()">Check</button>
+                     </div>
+                  </div>
+               </mat-card-content>
+            </mat-card>
+         </div>
+      </div>
+      <div *ngIf="next_back">
+         <mat-toolbar class="toolbar">
+            <button mat-button class="forward" (click)="suptopicchangeback()" [disabled]="isBackDisabled"
+               [ngClass]="{'back': isBackDisabled}" (click)="scrollToTop('scrollableElement1')">Back</button>
+            <div *ngIf="completed 
+            " class="prac_completed">completed <mat-icon class="prac_completed_icon">done</mat-icon>
+            </div>
+            <button mat-button class="backward" (click)="suptopicchange()" [disabled]="isNextDisabled"
+               [ngClass]="{'back': isNextDisabled}" (click)="scrollToTop('scrollableElement1')">Next</button>
+         </mat-toolbar>
+      </div>
+   </div>
+   <div class="container1">
+      <app-texteditor></app-texteditor>
+   </div>
+</div>
